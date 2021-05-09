@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <title>Vue js todo app</title>
+    <style>
+        .doneClass {
+            background-color: yellow;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="todoapp" class="col-md-6 container">
+        <h1 class="text-center p-2">{{heading}}</h1>
+        <form class="text-center" autocomplete="off" @submit.prevent="addTodo">
+            <label for="todotext" class="form-label">Add your todo here</label>
+            <input type="text" class="form-control" name="todotext" id="todotext" v-model="todotext">
+            <p>Typing......{{todotext}}</p>
+            <input type="submit" class="btn btn-secondary my-2" value="Click To Submit" name="" id="">
+        </form>
+        <ul class="list-group">
+            <li class="list-group-item" v-for="todo in allitems" :key="todo.id" v-bind:class="{doneClass:todo.done}">
+                <p class="text-center font-weight-bold">{{todo.todotext}}</p>
+                <!-- {{todo.done}} -->
+                <p class="text-center">Click on checkbox to mark as read or click on delete to remove</p>
+                <input v-model="todo.done" type="checkbox" style="margin:0.5rem auto;text-align:center; display:block;" name="done" id="done">
+                <button @click="deleteTodo(todo)" class="btn btn-danger" style="margin:0 auto; text-align: center; display:block;">Delete</button>
+            </li>
+        </ul>
+        <!-- {{allitems}} -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="todoapp.js"></script>
+</body>
+</html>
